@@ -24,7 +24,6 @@ public class ArgumentExtractorBeanPostProcessor implements BeanPostProcessor {
         for(Field field : fields) {
             field.setAccessible(true);
             InjectFirstArg injectFirstArg = field.getAnnotation(InjectFirstArg.class);
-            InjectSecondArg injectSecondArg = field.getAnnotation(InjectSecondArg.class);
             if(injectFirstArg != null) {
                 String pathToData;
                 try {
@@ -34,13 +33,6 @@ public class ArgumentExtractorBeanPostProcessor implements BeanPostProcessor {
                     pathToData = "src/main/resources/data.json";
                 }
                 ReflectionUtils.setField(field, bean, pathToData);
-            }
-            if(injectSecondArg != null) {
-                try {
-                    ReflectionUtils.setField(field, bean, applicationArguments.getSourceArgs()[1]);
-                } catch (IndexOutOfBoundsException e) {
-                    log.warn("The second argument for a log file is not present. Default output to console will be used instead.");
-                }
             }
         }
         return bean;
