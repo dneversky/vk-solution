@@ -32,7 +32,7 @@ public class ArgumentExtractorBeanPostProcessor implements BeanPostProcessor {
                     pathToData = applicationArguments.getSourceArgs()[0];
                 } catch (IndexOutOfBoundsException e) {
                     log.warn("The first argument indicating to data is not present. Default datafile will be used instead.");
-                    pathToData = "src/main/resources/data.json";
+                    pathToData = "data.json";
                 }
                 ReflectionUtils.setField(field, bean, pathToData);
             }
