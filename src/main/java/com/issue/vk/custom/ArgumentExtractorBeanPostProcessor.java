@@ -6,6 +6,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.ApplicationArguments;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
 
@@ -27,12 +28,11 @@ public class ArgumentExtractorBeanPostProcessor implements BeanPostProcessor {
             field.setAccessible(true);
             InjectFirstArg injectFirstArg = field.getAnnotation(InjectFirstArg.class);
             if(injectFirstArg != null) {
-                String pathToData;
+                String pathToData = null;
                 try {
                     pathToData = applicationArguments.getSourceArgs()[0];
                 } catch (IndexOutOfBoundsException e) {
-                    log.warn("The first argument indicating to data is not present. Default datafile will be used instead.");
-                    pathToData = "data.json";
+                    log.warn("The first argument indicating to data is not present.");
                 }
                 ReflectionUtils.setField(field, bean, pathToData);
             }
