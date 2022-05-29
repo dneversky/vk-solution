@@ -2,7 +2,7 @@ package com.issue.vk.api;
 
 import com.issue.vk.model.Book;
 import com.issue.vk.model.DealRequest;
-import com.issue.vk.service.CommonService;
+import com.issue.vk.service.ProxyService;
 import com.issue.vk.service.impl.MarketServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ public class MarketController {
     private MarketServiceImpl marketServiceImpl;
 
     @Autowired
-    private CommonService commonService;
+    private ProxyService proxyService;
 
     @GetMapping
     public ResponseEntity<List<Book>> getBooks() {
@@ -27,7 +27,7 @@ public class MarketController {
 
     @PostMapping("/deal")
     public ResponseEntity<?> doDeal(@RequestBody DealRequest dealRequest) {
-        commonService.doDeal(dealRequest.getId(), dealRequest.getAmount());
+        proxyService.doDeal(dealRequest.getId(), dealRequest.getAmount());
         return ResponseEntity.ok().build();
     }
 }
