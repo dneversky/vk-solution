@@ -1,6 +1,7 @@
 package com.issue.vk.custom;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -11,8 +12,9 @@ import org.springframework.util.ReflectionUtils;
 import java.lang.reflect.Field;
 
 @Component
-@Slf4j
 public class ArgumentExtractorBeanPostProcessor implements BeanPostProcessor {
+
+    Logger log = LoggerFactory.getLogger(ArgumentExtractorBeanPostProcessor.class);
 
     @Autowired
     private ApplicationArguments applicationArguments;

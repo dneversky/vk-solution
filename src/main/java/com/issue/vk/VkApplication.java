@@ -1,12 +1,14 @@
 package com.issue.vk;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
-@Slf4j
 @SpringBootApplication
 public class VkApplication {
+
+    static Logger log = LoggerFactory.getLogger(VkApplication.class);
 
     public static void main(String[] args) {
         String logfile = "";

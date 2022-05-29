@@ -1,15 +1,17 @@
 package com.issue.vk.custom;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
 
 @Component
-@Slf4j
 public class JsonObjectManager {
+
+    Logger log = LoggerFactory.getLogger(JsonObjectManager.class);
 
     @InjectFirstArg
     private String pathToData;

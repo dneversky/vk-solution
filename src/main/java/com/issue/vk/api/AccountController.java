@@ -1,7 +1,7 @@
 package com.issue.vk.api;
 
 import com.issue.vk.model.Account;
-import com.issue.vk.service.AccountService;
+import com.issue.vk.service.impl.AccountServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class AccountController {
 
     @Autowired
-    private AccountService accountService;
+    private AccountServiceImpl accountServiceImpl;
 
     @GetMapping
     public ResponseEntity<Account> getAccount() {
-        return ResponseEntity.ok().body(accountService.getAccount());
+        return ResponseEntity.ok().body(accountServiceImpl.getAccount());
     }
 }
